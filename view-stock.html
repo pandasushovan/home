@@ -4,21 +4,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pharmacy Home</title>
 
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" 
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
-    <script type="text/javascript" 
-
-    src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" 
-
-    src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-    <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-
+    
 </head>
 <body>
     <div class="bg-secondary py-1 text-light shadow mb-1">
@@ -112,7 +106,7 @@
             </div>
                         
             <div class="col-9 bg-light">
-                
+                <div id="total" class="d-flex justify-content-center lead"></div>
                 <table id="myTable" class="table table-hover table-sm sortable" >
                     <thead>
                     <tr>
@@ -135,7 +129,7 @@
                         <td>15</td>
                         <td>101</td>
                         <td>102</td>
-                        <td>1020</td>
+                        <td>100</td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -145,7 +139,7 @@
                         <td>15</td>
                         <td>201</td>
                         <td>202</td>
-                        <td>2020</td>
+                        <td>200</td>
                     </tr>
                     <tr>
                         <td>3</td>
@@ -155,7 +149,117 @@
                         <td>15</td>
                         <td>301</td>
                         <td>302</td>
-                        <td>3020</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>700</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>800</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>900</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>cxvxccc</td>
+                        <td>cxxccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>1000</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>14</td>
+                        <td>10</td>
+                        <td>101</td>
+                        <td>302</td>
+                        <td>1100</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>1200</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>1300</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>cccc</td>
+                        <td>cccc</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>301</td>
+                        <td>302</td>
+                        <td>1400</td>
                     </tr>
                     </tbody> 
                 </table>
@@ -163,9 +267,78 @@
         </div>
     </div>
     <script>
+    /* main data table logic */
         $(document).ready(function(){
             $('#myTable').dataTable();
         });
+
+    /* logic to sum a column value */
+    var table = document.getElementById("myTable"), sumVal = 0;
+            for(var i = 1; i < 11; i++)
+            {
+                sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
+            }
+           
+            document.getElementById("total").innerHTML = "Total Value of Stock : " + 
+            new Intl.NumberFormat('re-RE', { style: 'currency', currency: 'INR' }).format(sumVal); 
+
+    /* recalculate on filter */
+            $(document).ready(function(){
+              $("input").keyup(function() {
+
+                /* Length of filtered table */
+                let rowCount = $('#myTable tr:visible').length;
+                var table = document.getElementById("myTable"), sumVal = 0;
+              for(var i = 1; i < rowCount; i++)
+              {
+                  sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
+              }
+            
+              document.getElementById("total").innerHTML = "Total Value of Stock : " + 
+              new Intl.NumberFormat('re-RE', { style: 'currency', currency: 'INR' }).format(sumVal);
+              });
+    /* calculate total value when table header is sorted */
+              $("th").click(function() {
+
+              let rowCount = $('#myTable tr:visible').length;
+              var table = document.getElementById("myTable"), sumVal = 0;
+              for(var i = 1; i < rowCount; i++)
+              {
+                sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
+              }
+
+              document.getElementById("total").innerHTML = "Total Value of Stock : " + 
+              new Intl.NumberFormat('re-RE', { style: 'currency', currency: 'INR' }).format(sumVal);
+              });   
+    /* calculate total value when next or prev page clicked*/
+              $(".dataTables_paginate").click(function() {
+
+              let rowCount = $('#myTable tr:visible').length;
+              var table = document.getElementById("myTable"), sumVal = 0;
+              for(var i = 1; i < rowCount; i++)
+              {
+                sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
+              }
+
+              document.getElementById("total").innerHTML = "Total Value of Stock : " + 
+              new Intl.NumberFormat('re-RE', { style: 'currency', currency: 'INR' }).format(sumVal);
+              });
+    /* calculate total value when show per selection changed*/
+              $("select").change(function() {
+
+              let rowCount = $('#myTable tr:visible').length;
+              var table = document.getElementById("myTable"), sumVal = 0;
+              for(var i = 1; i < rowCount; i++)
+              {
+                sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
+              }
+
+              document.getElementById("total").innerHTML = "Total Value of Stock : " + 
+              new Intl.NumberFormat('re-RE', { style: 'currency', currency: 'INR' }).format(sumVal);
+              });
+
+            });
+
     </script>
     <footer class="border-top my-5 py-4">
         <p class="small text-muted text-center">&copy; 2020 Panda Pharmacy</p>
