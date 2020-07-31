@@ -5,18 +5,23 @@
     <title>Pharmacy Home</title>
 
 <!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+<!-- Introduced for Table filter, search, Sum -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+<!-- Introduced for Table foot dropdown -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"></style>
     
 </head>
 <body>
     <div class="bg-secondary py-1 text-light shadow mb-1">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
                     <h1 class="display-4">Panda Pharmacy</h1>
@@ -24,18 +29,18 @@
                     <p class="p-0 m-0 lead" style="font-size:1.5vw;">Phone : 9831317658  WhatsApp : 7980308536</p>
                 </div>
                 <div class="col-sm-4">
-                    <h1 class="display-4">Stock Summary</h1>
-                    <img src="image/view-stock.svg" width="80" height="80" class=" mx-auto d-block">
+                    <h1 class="display-6">Stock Summary</h1>
+                    <img src="image/view-stock.svg" width="80" height="80" class="mx-auto d-block">
                 </div>
                 <div class="col-sm-2">
-                    <p class="p-0 m-0 lead" style="font-size:1.5vw;">Date : </p>
-                    <p class="p-0 m-0 lead" style="font-size:1.5vw;">Time : </p>
-                    <p class="p-0 m-0 lead" style="font-size:1.5vw;">User : </p>
+                    <p id="date" class="p-0 m-0 lead" style="font-size:1.5vw;"></p> 
+                    <p id="time" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
+                    <p id="user" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
                             <!---Navigation Menu present on all pages--->
             <div class="col-3">
@@ -44,26 +49,17 @@
                         <a class="navbar-brand" href="home.html">
                             <img src="image/home.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"
                             data-toggle="tooltip" data-placement="top" title="Home">
-                            <span class ="d-none d-md-inline">Home</span>
+                            <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">Home</span>
                         </a>
                     </div>
                 </nav>
-                <!--
-                <nav class="navbar navbar-light border border-light mt-1" style="background-color: #e3f2fd;">
-                    <div class="container-lg btn-outline-info">
-                        <a class="navbar-brand" href="medicine-detail.html">
-                            <img src="image/medicine.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"
-                            data-toggle="tooltip" data-placement="top" title="Medicines">
-                            <span class ="d-none d-md-inline">Medicines</span>
-                        </a>
-                    </div>
-                </nav>  -->
+ 
                 <nav class="navbar navbar-light border border-light mt-1" style="background-color: #e3f2fd;">
                     <div class="container-lg btn-outline-info">
                         <a class="navbar-brand" href="manage-stock.html">
                             <img src="image/manage-stock.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy" 
                             data-toggle="tooltip" data-placement="top" title="Manage Stock">
-                            <span class ="d-none d-md-inline">Manage Stock</span>
+                            <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">Manage Stock</span>
                         </a>
                     </div>
                 </nav>
@@ -72,7 +68,7 @@
                         <a class="navbar-brand" href="view-stock.html">
                             <img src="image/view-stock.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"
                             data-toggle="tooltip" data-placement="top" title="View Stock">
-                            <span class ="d-none d-md-inline">View Stock</span>
+                            <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">View Stock</span>
                         </a>
                     </div>
                 </nav>
@@ -81,7 +77,7 @@
                         <a class="navbar-brand" href="purchase-summary.html">
                             <img src="image/input.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"
                             data-toggle="tooltip" data-placement="top" title="Purchase Summary">
-                            <span class ="d-none d-md-inline">Purchase Summary</span>
+                            <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">Purchase Summary</span>
                         </a>
                     </div>
                 </nav>
@@ -90,7 +86,7 @@
                         <a class="navbar-brand" href="sale-summary.html">
                             <img src="image/output.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"
                             data-toggle="tooltip" data-placement="top" title="Sales Summary">
-                            <span class ="d-none d-md-inline">Sales Summary</span>
+                            <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">Sales Summary</span>
                         </a>
                     </div>
                 </nav>
@@ -99,212 +95,291 @@
                         <a class="navbar-brand" href="bill-customer.html">
                             <img src="image/bill.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"
                             data-toggle="tooltip" data-placement="top" title="Bill Customer">
-                            <span class ="d-none d-md-inline">Bill Customer</span>
+                            <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">Bill Customer</span>
                         </a>
                     </div>
                 </nav>
             </div>
                         
             <div class="col-9 bg-light">
+                
                 <div id="total" class="d-flex justify-content-center lead"></div>
+                <div class="table-responsive">
                 <table id="myTable" class="table table-hover table-sm sortable" >
                     <thead>
-                    <tr>
-                        <th scope="col">Sr #</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Company</th>
-                        <th scope="col">Units per Pack</th>
-                        <th scope="col">Packs per Box</th>
-                        <th scope="col">MRP for Pack</th>
-                        <th scope="col">Avl Pack</th>
-                        <th scope="col">Amount</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">Sr #</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Company</th>
+                            <th scope="col">Batch</th>
+                            <th scope="col">Expiry YY/MM</th>
+                            <th scope="col">Units per Pack</th>
+                            <th scope="col">Packs per Box</th>
+                            <th scope="col">MRP for Pack</th>
+                            <th scope="col">Avl Pack</th>
+                            <th scope="col">Amount</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>aaaaaaaaaaaaaaa</td>
-                        <td>aaaaaaaaaaaaaaaaaa</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>101</td>
-                        <td>102</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>bbbb</td>
-                        <td>bbbb</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>201</td>
-                        <td>202</td>
-                        <td>200</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>300</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>400</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>500</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>600</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>700</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>800</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>900</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>cxvxccc</td>
-                        <td>cxxccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>1000</td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>14</td>
-                        <td>10</td>
-                        <td>101</td>
-                        <td>302</td>
-                        <td>1100</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>1200</td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>1300</td>
-                    </tr>
-                    <tr>
-                        <td>14</td>
-                        <td>cccc</td>
-                        <td>cccc</td>
-                        <td>10</td>
-                        <td>15</td>
-                        <td>301</td>
-                        <td>302</td>
-                        <td>1400</td>
-                    </tr>
-                    </tbody> 
+                        <tr>
+                            <td>1</td>
+                            <td>aaaaaaaaaaaaaaa</td>
+                            <td>aaaaaaaaaaaaaaaaaa</td>
+                            <td>a1234</td>
+                            <td>21/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>101</td>
+                            <td>102</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>bbbb</td>
+                            <td>bbbb</td>
+                            <td>b1234</td>
+                            <td>21/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>201</td>
+                            <td>202</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>c1234</td>
+                            <td>20/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>300</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>c1234</td>
+                            <td>21/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>400</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>a1234</td>
+                            <td>22/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>x1234</td>
+                            <td>21/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>600</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>y1234</td>
+                            <td>22/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>700</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>z1234</td>
+                            <td>20/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>800</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>p1234</td>
+                            <td>22/06</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>900</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>cxvxccc</td>
+                            <td>cxxccc</td>
+                            <td>q1234</td>
+                            <td>21/12</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>r1234</td>
+                            <td>20/12</td>
+                            <td>14</td>
+                            <td>10</td>
+                            <td>101</td>
+                            <td>302</td>
+                            <td>1100</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>s1234</td>
+                            <td>22/01</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>1200</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>a1234</td>
+                            <td>21/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>1300</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>cccc</td>
+                            <td>cccc</td>
+                            <td>a1234</td>
+                            <td>21/10</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>301</td>
+                            <td>302</td>
+                            <td>1400</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                            <th rowspan="1" colspan="1"><select></select></th>
+                        </tr>
+                    </tfoot> 
                 </table>
-            </div>
+                </div>
+           </div>
         </div>
     </div>
     <script>
-    /* main data table logic */
-        $(document).ready(function(){
-            $('#myTable').dataTable();
-        });
+/* column drop-down based search   */
+        $(document).ready(function() {
+              $('#myTable').DataTable( {
+                  initComplete: function () {
+                      this.api().columns().every( function () {
+                          var column = this;
+                          var select = $('<select><option value=""></option></select>')
+                              .appendTo( $(column.footer()).empty() )
+                              .on( 'change', function () {
+                                  var val = $.fn.dataTable.util.escapeRegex(
+                                      $(this).val()
+                                  );
+          
+                                  column
+                                      .search( val ? '^'+val+'$' : '', true, false )
+                                      .draw();
+                              } );
+          
+                          column.data().unique().sort().each( function ( d, j ) {
+                              select.append( '<option value="'+d+'">'+d+'</option>' )
+                          } );
+                      } );
+                  }
+              } );
+          } );    
+
+     /* logic to populate date time and user */
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        document.getElementById("date").innerHTML = "Date : " + date;
+        document.getElementById("time").innerHTML = "Time : " + time;
+        document.getElementById("user").innerHTML = "User : ";
+   
 
     /* logic to sum a column value */
-    var table = document.getElementById("myTable"), sumVal = 0;
+        var table = document.getElementById("myTable"), sumVal = 0;
             for(var i = 1; i < 11; i++)
             {
-                sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
+                sumVal = sumVal + parseInt(table.rows[i].cells[9].innerHTML)
             }
            
             document.getElementById("total").innerHTML = "Total Value of Stock : " + 
             new Intl.NumberFormat('re-RE', { style: 'currency', currency: 'INR' }).format(sumVal); 
+ 
 
-    /* recalculate on filter */
-            $(document).ready(function(){
-              $("input").keyup(function() {
 
-                /* Length of filtered table */
-                let rowCount = $('#myTable tr:visible').length;
-                var table = document.getElementById("myTable"), sumVal = 0;
-              for(var i = 1; i < rowCount; i++)
-              {
-                  sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
-              }
-            
-              document.getElementById("total").innerHTML = "Total Value of Stock : " + 
-              new Intl.NumberFormat('re-RE', { style: 'currency', currency: 'INR' }).format(sumVal);
-              });
+    /* recalculate total amount on filter */
+                $(document).ready(function(){
+                    $("input").keyup(function() {
+
+                    /* Length of filtered table */
+                    let rowCount = $('#myTable tr:visible').length - 1;
+                    var table = document.getElementById("myTable"), sumVal = 0;
+                    for(var i = 1; i < rowCount; i++)
+                    {
+                        sumVal = sumVal + parseInt(table.rows[i].cells[9].innerHTML)
+                    }
+                
+                    document.getElementById("total").innerHTML = "Total Value of Stock : " + 
+                    new Intl.NumberFormat('re-RE', { style: 'currency', currency: 'INR' }).format(sumVal);
+                });
     /* calculate total value when table header is sorted */
               $("th").click(function() {
 
-              let rowCount = $('#myTable tr:visible').length;
+              let rowCount = $('#myTable tr:visible').length - 1;
               var table = document.getElementById("myTable"), sumVal = 0;
               for(var i = 1; i < rowCount; i++)
               {
-                sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
+                sumVal = sumVal + parseInt(table.rows[i].cells[9].innerHTML)
               }
 
               document.getElementById("total").innerHTML = "Total Value of Stock : " + 
@@ -313,11 +388,11 @@
     /* calculate total value when next or prev page clicked*/
               $(".dataTables_paginate").click(function() {
 
-              let rowCount = $('#myTable tr:visible').length;
+              let rowCount = $('#myTable tr:visible').length - 1;
               var table = document.getElementById("myTable"), sumVal = 0;
               for(var i = 1; i < rowCount; i++)
               {
-                sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
+                sumVal = sumVal + parseInt(table.rows[i].cells[9].innerHTML)
               }
 
               document.getElementById("total").innerHTML = "Total Value of Stock : " + 
@@ -326,11 +401,11 @@
     /* calculate total value when show per selection changed*/
               $("select").change(function() {
 
-              let rowCount = $('#myTable tr:visible').length;
+              let rowCount = $('#myTable tr:visible').length - 1;
               var table = document.getElementById("myTable"), sumVal = 0;
               for(var i = 1; i < rowCount; i++)
               {
-                sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML)
+                sumVal = sumVal + parseInt(table.rows[i].cells[9].innerHTML)
               }
 
               document.getElementById("total").innerHTML = "Total Value of Stock : " + 
