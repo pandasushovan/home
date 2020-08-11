@@ -4,25 +4,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pharmacy Home</title>
     <!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <style>
+        .table
+        {
+            display:table;
+            border-collapse:separate;
+            border-spacing:2px;
+        }
+        .thead
+        {
+            display:table-header-group;
+            color:white;
+            font-weight:bold;
+            background-color:grey;
+            text-align: center;
+        }
+        .tbody
+        {
+            display:table-row-group;
+        }
+        .tr
+        {
+            display:table-row;
+        }
+        .td
+        {
+            display:table-cell;
+            border:1px solid rgb(219, 219, 219);
+            padding:none;
+        }
+        
+        input { width: 100px;}
+        
+        .tr.editing .td
+        {
+            width: 100px;
+        }
+        .btnadd { transition-duration: 0.4s; background-color: green; color: white; border: 2px solid green;}
+        .btnedit { transition-duration: 0.4s; background-color: rgb(8, 8, 8); color: white; border: 2px solid rgb(8,8,8);}
+        .btndel { transition-duration: 0.4s; background-color: red; color: white; border: 2px solid red; }
+        .btnadd:hover { background-color: white; color: green; border: 2px solid green;}
+        .btnedit:hover { background-color: white; color: rgb(8,8,8); border: 2px solid rgb(8,8,8);}
+        .btndel:hover{ background-color: white; color: red; border: 2px solid red; }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    
 </head>
 <body>
     <div class="bg-secondary py-1 text-light shadow mb-1">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6">
-                    <h1 class="display-4">Panda Pharmacy</h1>
-                    <p class="p-0 m-0 lead" style="font-size:1.5vw;">35, Banerjee Para Road, Behala, Kolkata-700060</p>
-                    <p class="p-0 m-0 lead" style="font-size:1.5vw;">Phone : 9831317658  WhatsApp : 7980308536</p>
-                </div>
                 <div class="col-sm-4">
-                    <h1 class="display-6">Bill Customer</h1>
-                    <img src="image/bill.svg" width="80" height="80" class=" mx-auto d-block">
+                    <h1 class="display-4">Xxxxx Xxxxxxxx</h1>
+                    <p class="p-0 m-0 lead" style="font-size:1.5vw;">xx, Xxxxxxxx Xxxx Xxxx, Xxxxxx, Xxxxxxx-xxxxxx</p>
+                    <p class="p-0 m-0 lead" style="font-size:1.5vw;">Phone : xxxxxxxxxx  WhatsApp : xxxxxxxxxx</p>
+                </div>
+                <div class="col-sm-6">
+                    <img src="image/bill.svg" width="40" height="40" class=" mx-auto">
+                    <h1 class="display-6 d-md-inline">Bill Customer</h1>
+                    <form>
+                        <div class="form-group row m-1">
+                            <input type="text" id="pname" name="pname" class="col-sm-6" placeholder="Patient Name">
+                            <input type="text" id="doctor" name="doctor" class="col-sm-6" placeholder="Ref By">
+                            
+                        </div>
+                        <div class="form-group row m-1">
+                            <input type="number" id="pcont" name="pcont" class="col-sm-6" placeholder="Contact Number">
+                            <input type="text" id="paddr" name="paddr" class="col-sm-6" placeholder="Patient Addr">
+                            
+                        </div>
+                    </form>
                 </div>
                 <div class="col-sm-2">
                     <p id="date" class="p-0 m-0 lead" style="font-size:1.5vw;"></p> 
                     <p id="time" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
                     <p id="user" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
+                    <p id="billNo" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
                 </div>
             </div>
         </div>
@@ -61,19 +121,19 @@
             </nav>
             <nav class="navbar navbar-light border border-light mt-1" style="background-color: #e3f2fd;">
                 <div class="container-lg btn-outline-info">
-                    <a class="navbar-brand" href="purchase-summary.html">
+                    <a class="navbar-brand" href="edit-purchase.html">
                         <img src="image/input.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"
-                        data-toggle="tooltip" data-placement="top" title="Purchase Summary">
-                        <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">Purchase Summary</span>
+                        data-toggle="tooltip" data-placement="top" title="Edit Purchase">
+                        <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">Edit Purchase</span>
                     </a>
                 </div>
             </nav>
             <nav class="navbar navbar-light border border-light mt-1" style="background-color: #e3f2fd;">
                 <div class="container-lg btn-outline-info">
-                    <a class="navbar-brand" href="sale-summary.html">
+                    <a class="navbar-brand" href="edit-bill.html">
                         <img src="image/output.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"
-                        data-toggle="tooltip" data-placement="top" title="Sales Summary">
-                        <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">Sales Summary</span>
+                        data-toggle="tooltip" data-placement="top" title="Edit Bill">
+                        <span class="p-0 m-0 lead d-none d-md-inline" style="font-size:1.5vw;">Edit Bill</span>
                     </a>
                 </div>
             </nav>
@@ -89,21 +149,308 @@
         </div>
 
         <div class="col-9 bg-light">
-            <p>just place holder</p>
+            <div class="row pt-2">
+ 
+                <form class="col-sm-3">
+                    <div class="form-group row">
+                        <label for="total" class="col-sm-4 col-form-label">TOTAL :</label>
+                        <div class="col-sm-1 px-0">
+                            <input type="number" id="total" name="total" value=0.00 readonly><br>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="disc" class="col-sm-4 col-form-label">DISC :</label>
+                        <div class="col-sm-1 px-0">
+                            <input type="number" id="disc" name="disc" value=0.00 readonly><br>
+                        </div>
+                    </div>
+                </form>
+                <form class="col-sm-3">
+                    <div class="form-group row mx-2">
+                        <label for="cgst" class="col-sm-4 col-form-label">CGST :</label>
+                        <div class="col-sm-1 px-0">
+                            <input type="number" id="cgst" name="cgst" value=0.00 readonly><br>
+                        </div>
+                    </div>
+                    <div class="form-group row mx-2">
+                        <label for="sgst" class="col-sm-4 col-form-label">SGST :</label>
+                        <div class="col-sm-1 px-0">
+                            <input type="number" id="sgst" name="sgst" value=0.00 readonly><br>
+                        </div>
+                    </div>
+                </form>
+                <form class="col-sm-3">
+                    <div class="form-group row mx-2">
+                        <label for="adjust" class="col-sm-4 col-form-label">ADJ :</label>
+                        <div class="col-sm-1 px-0">
+                            <input type="number" id="adjust" name="adjust" value=0.00 readonly><br>
+                        </div>
+                    </div>
+                    <div class="form-group row mx-2">
+                        <label for="net" class="col-sm-4 col-form-label">NET :</label>
+                        <div class="col-sm-1 px-0">
+                            <input type="number" id="net" name="net" value=0.00 readonly><br>
+                        </div>
+                    </div>
+                </form>
+                <form class="col-sm-3">
+                    <div class="form-group row mx-2">
+                       <label for="paid" class="col-sm-4 col-form-label">PAID :</label>
+                       <div class="col-sm-1 px-0">
+                           <input type="number" id="paid" name="paid" value=0.00><br>
+                       </div>
+                   </div>
+                   <div class="form-group row mx-2">
+                       <label for="balance" class="col-sm-4 col-form-label">BAL :</label>
+                       <div class="col-sm-1 px-0">
+                           <input type="number" id="balance" name="balance" value=0.00 readonly><br>
+                       </div>
+                   </div>
+               </form>
+            </div>
+
+            <div class="table-responsive">
+                <div class="table table-sm">
+
+                    <div class="thead">
+                        <div class="tr">
+                            <div class="td">QTY</div>
+                            <div class="td">PRD</div>
+                            <div class="td">HSN</div>
+                            <div class="td">PAC</div>
+                            <div class="td">BATCH</div>
+                            <div class="td">EXP</div>
+                            <div class="td">MRP</div>
+                            <div class="td">RATE</div>
+                            <div class="td">DISC%</div>
+                            <div class="td">AMOUNT</div>
+                            <div class="td">CGST</div>
+                            <div class="td">SGST</div>
+                            <div class="td">DISC</div>
+                            <div class="td">NET</div>
+                            <div class="td">GST</div>
+                            <div class="td">PRE-GST</div>
+                            <div class="td"></div>
+                            <div class="td"></div>
+                        </div>
+                    </div>
+                    <div class="tbody">
+                        <form class="tr">
+                            <div class="td"><input type="number" id="input1" value=0 /></div>
+                            <div class="td">
+                                <select class="form-control-sm" id="input2">
+                                    <option selected></option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="td"><input type="text" id="input3" value="" readonly/></div>
+                            <div class="td"><input type="number" id="input4" value=0 readonly/></div>
+                            <div class="td">
+                                <select class="form-control-sm" id="input5">
+                                    <option selected></option>
+                                    <option value="1">A10000</option>
+                                    <option value="2">B20000</option>
+                                    <option value="3">C30000</option>
+                                </select>
+                            </div>
+                            <div class="td">
+                                <select class="form-control-sm" id="input6">
+                                    <option selected></option>
+                                    <option value="1">21/11</option>
+                                    <option value="2">22/06</option>
+                                    <option value="3">23/04</option>
+                                </select>
+                            </div>
+                            <div class="td"><input type="number" id="input7" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input8" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input9" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input10" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input11" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input12" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input13" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input14" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input15" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input16" value=0 readonly/></div>
+                            <div class="td action"><button class="btnadd" type="button" onclick="add(this);">Add</button></div>
+                        </form>
+                        <form class="tr">
+                            <div class="td">1</div>
+                            <div class="td">Calpol</div>
+                            <div class="td">3004</div>
+                            <div class="td">15</div>
+                            <div class="td">A100000</div>
+                            <div class="td">21/11</div>
+                            <div class="td">100.00</div>
+                            <div class="td">100.00</div>
+                            <div class="td">10</div>
+                            <div class="td">170.00</div>
+                            <div class="td">6</div>
+                            <div class="td">6</div>
+                            <div class="td">20.00</div>
+                            <div class="td">155.00</div>
+                            <div class="td">32.00</div>
+                            <div class="td">123.00</div>
+                            <div class="td action"><button class="btnedit" type="button" onclick="edit(this);">Edit</button></div>
+                            <div class="td action"><button class="btndel" type="button" onclick="del(this);">Del</button></div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-2">
+                <div class="col-sm-3">
+                    <save type="button" class="btn btn-outline-dark"
+                            onclick="cancelBill('myTable', 'StockSummary-'+date+'-'+time)">Cancel
+                    </save>
+                    <submit type="button" class="btn btn-outline-success"
+                            onclick="submitBill('myTable', 'StockSummary-'+date+'-'+time)">Submit
+                    </submit>
+                </div>
+            </div>
+
         </div>
         </div>
     </div>
 
     <script>
 
-        /* logic to populate date time and user */
-           var today = new Date();
-           var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-           var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-           document.getElementById("date").innerHTML = "Date : " + date;
-           document.getElementById("time").innerHTML = "Time : " + time;
-           document.getElementById("user").innerHTML = "User : ";
-   
+/* logic to populate date time and user */
+
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        document.getElementById("date").innerHTML = "Date : " + date;
+        document.getElementById("time").innerHTML = "Time : " + time;
+        document.getElementById("user").innerHTML = "User : ";
+        document.getElementById("billNo").innerHTML = "Bill No : ";
+
+// Logic to add new billing row
+        function add(element){
+                var tr = jQuery(element).parent().parent();
+                var tbody = jQuery(element).parent().parent().parent();
+                
+    // populate new row taking input from Add Row            
+                if(($("#input1").val() == "") || ($("#input2").children("option:selected").text()=="")) {
+                    
+                    alert("Enter QTY and PRD to Add")
+
+                } else {
+
+                    ourHTML = `<form class="tr">`;
+
+                    var str = $("#input1").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input2").children("option:selected").text();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input3").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input4").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input5").children("option:selected").text();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input6").children("option:selected").text();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input7").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input8").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input9").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input10").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input11").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input12").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input13").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input14").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input15").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input16").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    ourHTML = ourHTML + 
+                        `<div class="td action"><button class="btnedit" type="button" onclick="edit(this);">Edit</button></div>
+                        <div class="td action"><button class="btndel" type="button" onclick="del(this);">Del</button></div>
+                    </form>`
+
+                    tbody.append(ourHTML);
+                }
+            } 
+
+// Logic to make the table editable and non editable
+           function edit(element){
+                var tr = jQuery(element).parent().parent();
+                if(!tr.hasClass("editing")) {
+                    tr.addClass("editing");
+                    tr.find("DIV.td").each(function(){
+                        
+                        if(!jQuery(this).hasClass("action")){
+                            var value = jQuery(this).text();
+                            jQuery(this).text("");
+                            jQuery(this).append('<input type="text" value="'+value+'" />');
+                        } else {
+                            if(jQuery(this).find("BUTTON").text()=="Del"){
+                                jQuery(this).find("BUTTON").attr('disabled', true);
+                                jQuery(".btnadd").attr('disabled', true);
+                            }
+                            if(jQuery(this).find("BUTTON").text()=="Edit"){
+                                jQuery(this).find("BUTTON").text("Save");
+                            }
+                        }
+                    });
+                } else {
+                    tr.removeClass("editing");
+                    tr.find("DIV.td").each(function(){
+                        if(!jQuery(this).hasClass("action")){
+                            var value = jQuery(this).find("INPUT").val();
+                            jQuery(this).text(value);
+                            jQuery(this).find("INPUT").remove();
+                        } else {
+                            if(jQuery(this).find("BUTTON").text()=="Del"){
+                                jQuery(this).find("BUTTON").attr('disabled', false);
+                                jQuery(".btnadd").attr('disabled', false);
+                            }
+                            if(jQuery(this).find("BUTTON").text()=="Save"){
+                                jQuery(this).find("BUTTON").text("Edit");
+                            }
+                        }
+                    });
+                }
+            }
+
+// Logic to delete existing entry
+            function del(element){
+
+                if (confirm('Are you sure to Delete the row?')) {
+                    var tr = jQuery(element).parent().parent();
+                    jQuery(tr).remove();
+                } else {
+
+                }
+            }
+
+
     </script>
 
     <footer class="border-top my-5 py-4">
@@ -112,7 +459,3 @@
 
 </body>
 </html>
-
-
-
-

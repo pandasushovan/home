@@ -35,7 +35,7 @@
             padding:none;
         }
         
-        input { width: 100px;}
+        input { width: 100px}
         
         .tr.editing .td
         {
@@ -47,6 +47,7 @@
         .btnadd:hover { background-color: white; color: green; border: 2px solid green;}
         .btnedit:hover { background-color: white; color: rgb(8,8,8); border: 2px solid rgb(8,8,8);}
         .btndel:hover{ background-color: white; color: red; border: 2px solid red; }
+        .search:hover{ background-color: rgb(8,8,8); color: white; border: 2px solid rgb(8,8,8); }
     </style>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -63,18 +64,18 @@
                     <p class="p-0 m-0 lead" style="font-size:1.5vw;">Phone : xxxxxxxxxx  WhatsApp : xxxxxxxxxx</p>
                 </div>
                 <div class="col-sm-6">
-                    <img src="image/manage-stock.svg" width="40" height="40" class=" mx-auto">
-                    <h1 class="display-6 d-md-inline">Manage Stock</h1>
+                    <img src="image/output.svg" width="40" height="40" class=" mx-auto">
+                    <h1 class="display-6 d-md-inline">View Bill</h1>
                     <form>
                         <div class="form-group row m-1">
-                            <input type="text" id="dname" name="dname" class="col-sm-4" placeholder="Distributor">
-                            <input type="text" id="dgstin" name="dgstin" class="col-sm-4" placeholder="GSTIN">
-                            <input type="text" id="dpan" name="dpan" class="col-sm-4" placeholder="PAN">                            
+                            <input type="text" id="pname" name="pname" class="col-sm-6" placeholder="Patient Name">
+                            <input type="text" id="doctor" name="doctor" class="col-sm-6" placeholder="Ref By">
+                            
                         </div>
                         <div class="form-group row m-1">
-                            <input type="text" id="dbill" name="dbill" class="col-sm-4" placeholder="Purchase Bill">
-                            <input type="date" id="pdate" name="pdate" class="col-sm-4">
-                            <input type="time" id="ptime" name="ptime" class="col-sm-4">
+                            <input type="number" id="pcont" name="pcont" class="col-sm-6" placeholder="Contact Number">
+                            <input type="text" id="paddr" name="paddr" class="col-sm-6" placeholder="Patient Addr">
+                            
                         </div>
                     </form>
                 </div>
@@ -82,6 +83,10 @@
                     <p id="date" class="p-0 m-0 lead" style="font-size:1.5vw;"></p> 
                     <p id="time" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
                     <p id="user" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
+                    <form>
+                        <input type="text" id="billno" placeholder="Bill no"/>
+                        <button class="search" type="button" onclick="search(this);">Search</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -192,6 +197,20 @@
                         </div>
                     </div>
                 </form>
+                <form class="col-sm-3">
+                    <div class="form-group row mx-2">
+                       <label for="paid" class="col-sm-4 col-form-label">PAID :</label>
+                       <div class="col-sm-1 px-0">
+                           <input type="number" id="paid" name="paid" value=0.00><br>
+                       </div>
+                   </div>
+                   <div class="form-group row mx-2">
+                       <label for="balance" class="col-sm-4 col-form-label">BAL :</label>
+                       <div class="col-sm-1 px-0">
+                           <input type="number" id="balance" name="balance" value=0.00 readonly><br>
+                       </div>
+                   </div>
+               </form>
             </div>
 
             <div class="table-responsive">
@@ -201,78 +220,97 @@
                         <div class="tr">
                             <div class="td">QTY</div>
                             <div class="td">PRD</div>
-                            <div class="td">COMPANY</div>
                             <div class="td">HSN</div>
-                            <div class="td">PAC/BOX</div>
-                            <div class="td">UNT/PAC</div>
+                            <div class="td">PAC</div>
                             <div class="td">BATCH</div>
                             <div class="td">EXP</div>
                             <div class="td">MRP</div>
                             <div class="td">RATE</div>
-                            <div class="td">AMOUNT</div>
                             <div class="td">DISC%</div>
-                            <div class="td">CGST%</div>
-                            <div class="td">SGST%</div>
+                            <div class="td">AMOUNT</div>
+                            <div class="td">CGST</div>
+                            <div class="td">SGST</div>
+                            <div class="td">DISC</div>
+                            <div class="td">NET</div>
+                            <div class="td">GST</div>
+                            <div class="td">PRE-GST</div>
                             <div class="td"></div>
                             <div class="td"></div>
                         </div>
                     </div>
                     <div class="tbody">
                         <form class="tr">
-                            <div class="td"><input type="number" id="input1" value=0/></div>
+                            <div class="td"><input type="number" id="input1" value=0 /></div>
                             <div class="td">
-                                <select class="form-control-sm" id="input2">     <!-- product name  -->
+                                <select class="form-control-sm" id="input2">
                                     <option selected></option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
                             </div>
-                            <div class="td"><input type="text" id="input3" value="" readonly/></div>   <!-- company name  -->
-                            <div class="td"><input type="text" id="input4" value="" readonly/></div>    <!-- HSN  -->
-                            <div class="td"><input type="number" id="input5" value=0 readonly/></div>   <!-- pack per box  -->
-                            <div class="td"><input type="number" id="input6" value=0 readonly/></div>   <!-- unit per pack  -->
-                            <div class="td"><input type="text" id="input7" value="" /></div>            <!-- Batch  -->
-                            <div class="td"><input type="text" id="input8" value="" /></div>            <!-- expiry  -->
-                            <div class="td"><input type="number" id="input9" value=0 readonly/></div>   <!-- MRP  -->
-                            <div class="td"><input type="number" id="input10" value=0 /></div>          <!-- Rate  -->
-                            <div class="td"><input type="number" id="input11" value=0 /></div>          <!-- AMT  -->
-                            <div class="td"><input type="number" id="input12" value=0 /></div>          <!-- disc%  -->
-                            <div class="td"><input type="number" id="input13" value=0 readonly/></div>  <!-- SGST%  -->
-                            <div class="td"><input type="number" id="input14" value=0 readonly/></div>  <!-- CGST%  -->
+                            <div class="td"><input type="text" id="input3" value="" readonly/></div>
+                            <div class="td"><input type="number" id="input4" value=0 readonly/></div>
+                            <div class="td">
+                                <select class="form-control-sm" id="input5">
+                                    <option selected></option>
+                                    <option value="1">A10000</option>
+                                    <option value="2">B20000</option>
+                                    <option value="3">C30000</option>
+                                </select>
+                            </div>
+                            <div class="td">
+                                <select class="form-control-sm" id="input6">
+                                    <option selected></option>
+                                    <option value="1">21/11</option>
+                                    <option value="2">22/06</option>
+                                    <option value="3">23/04</option>
+                                </select>
+                            </div>
+                            <div class="td"><input type="number" id="input7" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input8" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input9" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input10" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input11" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input12" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input13" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input14" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input15" value=0 readonly/></div>
+                            <div class="td"><input type="number" id="input16" value=0 readonly/></div>
                             <div class="td action"><button class="btnadd" type="button" onclick="add(this);">Add</button></div>
                         </form>
                         <form class="tr">
-                            <div class="td">2</div>
+                            <div class="td">1</div>
                             <div class="td">Calpol</div>
-                            <div class="td">Med Pharma</div>
                             <div class="td">3004</div>
-                            <div class="td">20</div>
+                            <div class="td">15</div>
+                            <div class="td">A100000</div>
+                            <div class="td">21/11</div>
+                            <div class="td">100.00</div>
+                            <div class="td">100.00</div>
                             <div class="td">10</div>
-                            <div class="td">B200000</div>
-                            <div class="td">22/10</div>
-                            <div class="td">235.00</div>
                             <div class="td">170.00</div>
-                            <div class="td">340.00</div>
-                            <div class="td">7</div>
                             <div class="td">6</div>
                             <div class="td">6</div>
+                            <div class="td">20.00</div>
+                            <div class="td">155.00</div>
+                            <div class="td">32.00</div>
+                            <div class="td">123.00</div>
                             <div class="td action"><button class="btnedit" type="button" onclick="edit(this);">Edit</button></div>
                             <div class="td action"><button class="btndel" type="button" onclick="del(this);">Del</button></div>
                         </form>
-
-                    </div>
+                     </div>
                 </div>
             </div>
 
             <div class="row pt-2">
                 <div class="col-sm-3">
-                    <save type="button" class="btn btn-outline-dark"
-                            onclick="cancelBill('myTable', 'StockSummary-'+date+'-'+time)">Cancel
-                    </save>
-                    <submit type="button" class="btn btn-outline-success"
-                            onclick="submitBill('myTable', 'StockSummary-'+date+'-'+time)">Submit
-                    </submit>
+                    <button type="button" class="btn btn-outline-dark" id="modifybill"
+                            onclick="modifybill(this);">Modify
+                    </button>
+                    <button type="button" class="btn btn-outline-success" id="submitbill"
+                            onclick="submitbill(this)">Submit
+                    </button>
                 </div>
             </div>
 
@@ -281,6 +319,15 @@
     </div>
 
     <script>
+// disable all input fields and selectively enable search facility
+        $(document).ready(function() {
+
+            $(":input").prop("disabled", true);
+            
+            $("#billno").prop("disabled", false);
+            $(".search").prop("disabled", false);
+            
+        });
 
 /* logic to populate date time and user */
 
@@ -290,6 +337,23 @@
         document.getElementById("date").innerHTML = "Date : " + date;
         document.getElementById("time").innerHTML = "Time : " + time;
         document.getElementById("user").innerHTML = "User : ";
+
+// Bill no search will enable the page level Modify and Submit button
+        function search(element){
+
+            $("#modifybill").prop("disabled", false);
+            $("#submitbill").prop("disabled", false);
+
+        }
+
+// Page level update button will disable search field and button, enaling all input fields
+        function modifybill(element){
+          
+               
+                $(":input").prop("disabled", false);
+                $("#billno").prop("disabled", true);
+                $(".search").prop("disabled", true);
+        }
 
 // Logic to add new billing row
         function add(element){
@@ -317,10 +381,10 @@
                     var str = $("#input4").val();
                     ourHTML = ourHTML + `<div class="td">${str}</div>`
 
-                    var str = $("#input5").val();
+                    var str = $("#input5").children("option:selected").text();
                     ourHTML = ourHTML + `<div class="td">${str}</div>`
 
-                    var str = $("#input6").val();
+                    var str = $("#input6").children("option:selected").text();
                     ourHTML = ourHTML + `<div class="td">${str}</div>`
 
                     var str = $("#input7").val();
@@ -345,6 +409,12 @@
                     ourHTML = ourHTML + `<div class="td">${str}</div>`
 
                     var str = $("#input14").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input15").val();
+                    ourHTML = ourHTML + `<div class="td">${str}</div>`
+
+                    var str = $("#input16").val();
                     ourHTML = ourHTML + `<div class="td">${str}</div>`
 
                     ourHTML = ourHTML + 

@@ -35,7 +35,7 @@
             padding:none;
         }
         
-        input { width: 100px;}
+        input { width: 100px}
         
         .tr.editing .td
         {
@@ -47,6 +47,7 @@
         .btnadd:hover { background-color: white; color: green; border: 2px solid green;}
         .btnedit:hover { background-color: white; color: rgb(8,8,8); border: 2px solid rgb(8,8,8);}
         .btndel:hover{ background-color: white; color: red; border: 2px solid red; }
+        .search:hover{ background-color: rgb(8,8,8); color: white; border: 2px solid rgb(8,8,8); }
     </style>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -63,8 +64,8 @@
                     <p class="p-0 m-0 lead" style="font-size:1.5vw;">Phone : xxxxxxxxxx  WhatsApp : xxxxxxxxxx</p>
                 </div>
                 <div class="col-sm-6">
-                    <img src="image/manage-stock.svg" width="40" height="40" class=" mx-auto">
-                    <h1 class="display-6 d-md-inline">Manage Stock</h1>
+                    <img src="image/input.svg" width="40" height="40" class=" mx-auto">
+                    <h1 class="display-6 d-md-inline">Edit Purchase</h1>
                     <form>
                         <div class="form-group row m-1">
                             <input type="text" id="dname" name="dname" class="col-sm-4" placeholder="Distributor">
@@ -82,6 +83,9 @@
                     <p id="date" class="p-0 m-0 lead" style="font-size:1.5vw;"></p> 
                     <p id="time" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
                     <p id="user" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
+                    <form>
+                        <button class="search" type="button" onclick="search(this);">Search</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -260,19 +264,18 @@
                             <div class="td action"><button class="btnedit" type="button" onclick="edit(this);">Edit</button></div>
                             <div class="td action"><button class="btndel" type="button" onclick="del(this);">Del</button></div>
                         </form>
-
-                    </div>
+                     </div>
                 </div>
             </div>
 
             <div class="row pt-2">
                 <div class="col-sm-3">
-                    <save type="button" class="btn btn-outline-dark"
-                            onclick="cancelBill('myTable', 'StockSummary-'+date+'-'+time)">Cancel
-                    </save>
-                    <submit type="button" class="btn btn-outline-success"
-                            onclick="submitBill('myTable', 'StockSummary-'+date+'-'+time)">Submit
-                    </submit>
+                    <button type="button" class="btn btn-outline-dark" id="modifybill"
+                            onclick="modifybill(this);">Modify
+                    </button>
+                    <button type="button" class="btn btn-outline-success" id="submitbill"
+                            onclick="submitbill(this)">Submit
+                    </button>
                 </div>
             </div>
 
@@ -281,6 +284,17 @@
     </div>
 
     <script>
+// disable all input fields and selectively enable search facility
+        $(document).ready(function() {
+
+            $(":input").prop("disabled", true);
+            
+            $("#dname").prop("disabled", false);
+            $("#dbill").prop("disabled", false);
+            $("#pdate").prop("disabled", false);
+            $(".search").prop("disabled", false);
+            
+        });
 
 /* logic to populate date time and user */
 
@@ -290,6 +304,25 @@
         document.getElementById("date").innerHTML = "Date : " + date;
         document.getElementById("time").innerHTML = "Time : " + time;
         document.getElementById("user").innerHTML = "User : ";
+
+// Bill no search will enable the page level Modify and Submit button
+        function search(element){
+
+            $("#modifybill").prop("disabled", false);
+            $("#submitbill").prop("disabled", false);
+
+        }
+
+// Page level update button will disable search field and button, enaling all input fields
+        function modifybill(element){
+          
+               
+                $(":input").prop("disabled", false);
+                $("#dname").prop("disabled", true);
+                $("#dbill").prop("disabled", true);
+                $("#pdate").prop("disabled", true);
+                $(".search").prop("disabled", true);
+        }
 
 // Logic to add new billing row
         function add(element){
@@ -305,7 +338,7 @@
 
                     ourHTML = `<form class="tr">`;
 
-                    var str = $("#input1").val();
+                        var str = $("#input1").val();
                     ourHTML = ourHTML + `<div class="td">${str}</div>`
 
                     var str = $("#input2").children("option:selected").text();
