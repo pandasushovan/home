@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-    <div class="container" style="width: 900px;">
+    <div class="container-fluid">
         <br /><br />
         <h2 align="center">Medicine Rack Locator</h2>
         <br /><br />
@@ -40,7 +40,7 @@
 <script>
     $(document).ready(function() {
         $('#search').keyup(function(){
-            $('#result').html('');
+            $('#result').empty();
             var searchField = $('#search').val();
             var expression = new RegExp(searchField, "i");
             $.getJSON('myjson.json',function(data){
