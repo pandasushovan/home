@@ -1,99 +1,62 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xxxxxxxx Xxxx</title>
-    <!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <title>Medicine Rack Locator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/jquery.min.js"></script>
+    <style>
+    #result {
+        position: absolute;
+        width: 100%;
+        max-width: 870px;
+        cursor: pointer;
+        overflow-y: auto;
+        max-height: 400px;
+        box-sizing: border-box;
+        z-index: 1001;
+    }
+    .link-class:hover{
+        background-color: #f1f1f1;
+    }
+    </style>
 </head>
 <body>
-    <div class="bg-secondary py-1 text-light shadow mb-1">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-4">
-                  <h1 class="display-4">Xxxxx Xxxxxxxx</h1>
-                  <p class="p-0 m-0 lead" style="font-size:1.5vw;">xx, Xxxxxxxx Xxxx Xxxx, Xxxxxx, Xxxxxxx-xxxxxx</p>
-                  <p class="p-0 m-0 lead" style="font-size:1.5vw;">Phone : xxxxxxxxxx  WhatsApp : xxxxxxxxxx</p>
-                </div>
-                <div class="col-sm-6">
-                    <h1 class="display-6">Log-in Screen</h1>
-                </div>
-                <div class="col-sm-2">
-                    <p id="date" class="p-0 m-0 lead" style="font-size:1.5vw;"></p> 
-                    <p id="time" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
-                    <p id="user" class="p-0 m-0 lead" style="font-size:1.5vw;"></p>
-                </div>
-            </div>
+    <div class="container" style="width: 900px;">
+        <br /><br />
+        <h2 align="center">Medicine Rack Locator</h2>
+        <br /><br />
+        <div align="center">
+            <input type="text" name="search" id="search" placeholder="Search Medicine rack" class="form-control"/>
+            <ul class="list-group" id="result"></ul>
         </div>
+        <br />
     </div>
-    <div class="container-fluid">
-        <div class="row">
-                            <!---Navigation Menu present on all pages--->
-        <div class="col-3">
-
-        </div>
-        <div class="col-9 bg-light">
-            <div class="card o-hidden border-0 shadow-lg my-5 ">
-                <div class="card-body p-0">
-                  <!-- Nested Row within Card Body -->
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <div class="p-5">
-                        <div class="text-center">
-                          <h1 class="h4 text-gray-900 mb-4">Login</h1>
-                        </div>
-                        <form class="user" method="post">
-                          
-                          <div class="form-group">
-                            <input type="email" class="form-control form-control-user" name="email" 
-                            id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email">
-                          </div>
-                          <div class="form-group">
-                            <input type="password" class="form-control form-control-user" name="password" 
-                            id="exampleInputPassword" placeholder="Password">
-                          </div>
-                          <div class="form-group mt-2">
-                          </div>
-                          <a href="home.html">Continue</a> <!--This is temporary to link Home page from Login screen-->
-                            <button type="submit" name="submit" class="btn btn-primary btn-user btn-block"> Login </button>
-                           
-                          <hr>
-                        </form>
-      
-                        <!-- <div class="text-center">
-                          <a class="small" href="forgetpassword.php">Forgot Password?</a>
-                        </div> -->
-                        <!--<div class="text-center">
-                          <a class="small" href="register.php">Create an Account!</a>
-                        </div> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div>
-        </div>
-    </div>
-
-    <script>
-
-        /* logic to populate date time and user */
-           var today = new Date();
-           var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-           var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-           document.getElementById("date").innerHTML = "Date : " + date;
-           document.getElementById("time").innerHTML = "Time : " + time;
-           document.getElementById("user").innerHTML = "User : ";
-   
-    </script>
-
-    <footer class="border-top my-5 py-4">
-        <p class="small text-muted text-center">&copy; 2020 Panda Pharmacy</p>
-      </footer>
-
 </body>
-</html>
 
+</html>
+<script>
+    $(document).ready(function() {
+        $('#search').keyup(function(){
+            $('#result'.html(''))
+            var serachField = $('#search').val();
+            var expression = new RegExp(serachField, "i");
+            $.getJSON('myjosn.json',function(data){
+               $.each(data, function(key,value){
+                   if(value.medicine.search(expression)!=-1 || value.rack.search(expression)!=-1 )
+                   {
+                       $('#result').append('<li class="list-group-item">'
+                                            + ' | <span class="text-muted">'+ value.medicine +'</span>'
+                                            + '<span style="color:blue;font-weight:bold">'+ value.rack + '</span>'
+                                            + ' | <span class="text-muted">'+ value.qty +'</span>'  + '</li>');
+                   }
+               }) 
+            });
+        });
+    });
+</script>
 
 
 
