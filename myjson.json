@@ -1,0 +1,22 @@
+[
+{
+    "medicine":"Calpol",
+    "rack":"C",
+    "qty":"10"
+},
+{
+    "medicine":"Polycrol",
+    "rack":"P2",
+    "qty":"5"
+},
+{
+    "medicine":"Kesh Kala",
+    "rack":"fr1",
+    "qty":"3"
+},
+{
+    "medicine":"Pampers",
+    "rack":"lft2",
+    "qty":"25"
+}
+]
