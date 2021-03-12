@@ -18,5 +18,15 @@
     "medicine":"Pampers",
     "rack":"lft2",
     "qty":"25"
+},
+{
+    "medicine":"Nascivion",
+    "rack":"N",
+    "qty":"25"
+},
+{
+    "medicine":"Boroline",
+    "rack":"front 2",
+    "qty":"25"
 }
 ]
